@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">true</property>
+
+<!-- Use this for HSQL -->
+        <property name="hibernate.connection.driver_class">org.hsqldb.jdbc.JDBCDriver</property>
+        <property name="hibernate.connection.url">jdbc:hsqldb:mem:BusLogicDemo</property>
+        <property name="hibernate.connection.username">SA</property>
+        <property name="hibernate.default_catalog">PUBLIC</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+<!-- Use this for Oracle
+        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="hibernate.connection.username">admin</property>
+        <property name="hibernate.connection.password">xxx</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@buslogicdemo.cvcnavw8kt2z.us-east-1.rds.amazonaws.com:3306:BUSLOGIC</property>
+-->
+        <!-- This is the only setting required to activate ABL -->
+        <property name="hibernate.current_session_context_class">com.autobizlogic.abl.session.LogicThreadLocalSessionContext</property>
+		
+        <mapping class="buslogicdemo.data.Customer" />
+        <mapping class="buslogicdemo.data.Lineitem" />
+        <mapping class="buslogicdemo.data.Product" />
+        <mapping class="buslogicdemo.data.Purchaseorder" />
+    </session-factory>
+</hibernate-configuration>
